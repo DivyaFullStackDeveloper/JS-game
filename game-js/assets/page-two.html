@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Hunt</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .container-two {
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(135deg, #e0f7ff 0%, #fff0f8 100%);
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .game-box {
+        text-align: center;
+        margin-left: 150px;
+        background: linear-gradient(145deg, #89f7fe 0%, #ffb8d1 100%);
+        padding: 20px 40px;
+        border-radius: 20px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .second-div-title {
+        background: #fff;
+        color: #e4466f;
+        font-weight: bold;
+        font-size: 20px;
+        padding: 10px 20px;
+        border-radius: 10px;
+        display: inline-block;
+        margin-bottom: 30px;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      .game-card-div {
+        display: grid;
+        grid-template-columns: repeat(3, 120px);
+        justify-content: center;
+        grid-gap: 40px;
+        margin-bottom: 25px;
+      }
+
+      .number-card {
+        width: 90px;
+        height: 90px;
+        background: #f9a4bb;
+        border-right: 2px solid #fff;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        color: #e4466f;
+        font-weight: bold;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        user-select: none;
+        transition: transform 0.2s ease, background 0.3s ease;
+      }
+
+      .number-card:hover {
+        transform: scale(1.05);
+      }
+
+      .number-card.selected {
+        background: linear-gradient(145deg, #46cae4, #d3aef3);
+        color: white;
+      }
+
+      .number-card.wrong {
+        background: linear-gradient(145deg, #e4466f, #f55f75);
+        color: white;
+        transform: scale(1.1);
+      }
+
+      .timer {
+        background: #fff;
+        display: inline-block;
+        padding: 8px 25px;
+        border-radius: 4px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #e4466f;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        margin-right: 20px;
+        margin-top: 10px;
+      }
+
+      #start {
+        cursor: pointer;
+        background: #fff;
+        color: #e4466f;
+      }
+
+      #start:hover {
+        background: #7cd6ef;
+      }
+
+      .image-box {
+        width: 35%;
+      }
+
+      .bunny3 {
+        position: relative;
+        top: 30px;
+        width: 420px;
+        filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.2));
+      }
+
+      .message-box {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-size: 26px;
+        color: #e4466f;
+        font-weight: bold;
+        border-radius: 20px;
+        z-index: 1000;
+      }
+
+      .message-box.show {
+        display: flex;
+      }
+
+      .play-again {
+        margin-top: 20px;
+        padding: 10px 25px;
+        background: linear-gradient(135deg, #00a8e8 0%, #e63965 100%);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 18px;
+        cursor: pointer;
+      }
+
+      .play-again:hover {
+        background: linear-gradient(135deg, #007bb5 0%, #c9184a 100%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-two">
+      <div class="game-box">
+        <div class="second-div-title" id="game-title">
+          See and memorize the numbers position according to serial number!
+        </div>
+        <div class="game-card-div" id="grid">
+          <div class="number-card" data-index="0"></div>
+          <div class="number-card" data-index="1"></div>
+          <div class="number-card" data-index="2"></div>
+          <div class="number-card" data-index="3"></div>
+          <div class="number-card" data-index="4"></div>
+          <div class="number-card" data-index="5"></div>
+          <div class="number-card" data-index="6"></div>
+          <div class="number-card" data-index="7"></div>
+          <div class="number-card" data-index="8"></div>
+        </div>
+        <div class="timer" id="start">Start Game</div>
+        <div class="timer" id="timer">Time : 10</div>
+        <div class="timer" id="score">Score : 0</div>
+      </div>
+
+      <div class="image-box">
+        <img src="./image/pink-bunny3.png" alt="Bunny" class="bunny3" />
+      </div>
+    </div>
+
+    <div class="message-box" id="message-box">
+      <div id="message-text"></div>
+      <button class="play-again" id="play-again">Play Again</button>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
